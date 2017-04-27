@@ -10,13 +10,21 @@ class Game
     @not_in_turn = @player1
   end
 
+  def self.create_game(player1, player2)
+    @game = Game.new(player1,player2)
+  end
+
+  def self.instance
+    @game
+  end
+
   def turn_switcher
     @turn = @not_in_turn
     @not_in_turn =  (@not_in_turn == @player2 ?  @player1 : @player2)
   end
 
-  def self.attack
-    @not_in_turn.reduce_hp
+  def attack
+    turn_switcher.reduce_hp
   end
 
 end

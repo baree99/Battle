@@ -2,7 +2,6 @@ require_relative '../app'
 
 describe Game do
   let(:game) { described_class.new(:player1, :player2) }
-  # let(:player) { Player.new(:unai) }
   describe '#player' do
     it 'shoud create two players when we initialize' do
       expect(game.player1).to be_an_instance_of Player

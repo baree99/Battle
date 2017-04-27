@@ -9,9 +9,7 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    $game = Game.new(params[:player1], params[:player2])
-    # $player1 = Player.new(params[:player1])
-    # $player2 = Player.new(params[:player2])
+    Game.create_game(params[:player1], params[:player2])
     redirect '/play'
   end
 
@@ -20,13 +18,13 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    redirect '/loser' if $game.player1.hp == 0 || $game.player2.hp == 0
-    $game.attack
-     erb :attack
+    Game.instance.attack
+    redirect '/winner' if Game.instance.player1.hp == 0 || Game.instance.player2.hp == 0
+    erb :attack
    end
 
-   get '/loser' do
-     erb :loser
+   get '/winner' do
+     erb :winner
    end
 
   run! if app_file == $0
