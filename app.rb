@@ -4,6 +4,10 @@ require_relative './lib/game'
 
 class Battle < Sinatra::Base
 
+  before do
+    @game = Game.instance
+  end
+
   get '/' do
     erb :index
   end
@@ -18,12 +22,14 @@ class Battle < Sinatra::Base
   end
 
   post '/attack' do
-    Game.instance.attack
-    redirect '/winner' if Game.instance.player1.hp == 0 || Game.instance.player2.hp == 0
+    @game.attack
+    @attacker, @defender = @game.attacking_order
+    redirect '/winner' if @attacker.hp == 0 || @defender.hp == 0
     erb :attack
    end
 
    get '/winner' do
+     @winner = @game.attacking_order[0]
      erb :winner
    end
 

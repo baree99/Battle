@@ -10,13 +10,13 @@ describe Game do
   end
   describe '#turn_switcher' do
     it 'changes the player attacking' do
-      expect(game.turn_switcher).to eq game.player2
-      expect(game.turn_switcher).to eq game.player1
+      expect(game.turn_switcher[0]).to eq game.player2
+      expect(game.turn_switcher[0]).to eq game.player1
     end
   end
   describe '#attack' do
     it 'reduces the other players hp points' do
-      expect { game.attack }.to change { game.player2.hp }.by(-10)
+      expect { game.attack }.to change { game.player1.hp }.by(-10)
     end
   end
 end

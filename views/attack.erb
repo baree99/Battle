@@ -1,9 +1,9 @@
-<h1> <%= Game.instance.player1.name %>: <%= Game.instance.player1.hp %>HP VS <%= Game.instance.player2.name %>: <%= Game.instance.player2.hp %>HP</h1>
+<h1> <%= @game.player1.name %>: <%= @game.player1.hp %>HP VS <%= @game.player2.name %>: <%= @game.player2.hp %>HP</h1>
 
 
-<h2> <%= Game.instance.turn.name %> attacked <%= Game.instance.not_in_turn.name%>!!!!</h2>
+<h2> <%= @attacker.name %> attacked <%= @defender.name%>!!!!</h2>
 
-<h2><%= Game.instance.not_in_turn.name %>'s turn!</h2>
+<h2><%= @defender.name %>'s turn!</h2>
 
 <form action="/attack" method="post">
         <input type = "submit" value = "Attack">
